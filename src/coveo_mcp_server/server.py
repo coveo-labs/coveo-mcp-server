@@ -1,4 +1,5 @@
 import json
+from typing import Any, Dict
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 from coveo_mcp_server.coveo_api import make_coveo_request, retrieve_passages, generate_answer
@@ -8,7 +9,7 @@ load_dotenv()
 mcp = FastMCP("coveo_mcp_server")
 
 @mcp.tool()
-async def search_coveo(query: str, numberOfResults: int = 5) -> str:
+async def search_coveo(query: str, numberOfResults: int = 5) -> Dict[str, Any]:
     """
     Use search_coveo when the goal is to retrieve metadata, titles, or URLs related to documents.
     Ideal for exploring information broadly, navigating multiple sources, or presenting lists of content without needing the content itself.
@@ -51,7 +52,7 @@ async def search_coveo(query: str, numberOfResults: int = 5) -> str:
 
 
 @mcp.tool()
-async def passage_retrieval(query: str, numberOfPassages: int = 5) -> str:
+async def passage_retrieval(query: str, numberOfPassages: int = 5) -> Dict[str, Any]:
     """
     Use passage_retrieval to extract highly relevant text snippets from documents.
     Useful when building answers, summaries, or even new documents from source material.

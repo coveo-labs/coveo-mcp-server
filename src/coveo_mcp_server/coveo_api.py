@@ -50,6 +50,29 @@ def format_search_response(response: Dict[str, Any], fields_to_include: List[str
     
     return {"results": formatted_results}
 
+def format_passage_retrieval_response(response: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Format the Coveo passage retrieval response to extract relevant passages.
+    
+    Args:
+        response (List[Dict[str, Any]]): The raw list of passage items.
+        
+    Returns:
+        List[Dict[str, Any]]: List of formatted passages without relevanceScore.
+    """
+    if not response:
+        return []
+    
+    formatted_passages = []
+    for item in response:
+        passage = {
+            "text": item.get("text", ""),
+            "document": item.get("document", {})
+        }
+        formatted_passages.append(passage)
+    
+    return formatted_passages
+
 async def make_coveo_request(payload: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """Make a request to the Coveo API with proper error handling."""
     headers = {
@@ -126,9 +149,10 @@ async def retrieve_passages(query: str, number_of_passages: int = 5) -> Dict:
             response = await client.post(endpoint, headers=headers, json=payload, params=params, timeout=30.0)
             response.raise_for_status()
             data = response.json()
+
+            formatted_passages = format_passage_retrieval_response(data.get('items', []))
             
-            #passages = []
-            return data.get('items', [])
+            return formatted_passages
             
         except httpx.HTTPStatusError as e:
             print(f"HTTP {e.response.status_code}: {e.response.text}")
