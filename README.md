@@ -12,8 +12,17 @@ This is a simple MCP server that connects to **Coveo** and executes search queri
 
 ## Available Tools
 
+```mermaid
+flowchart TD
+    MCPCLIENT["MCP Client"] --> MCPSERVER["Coveo MCP Server"]
+    MCPSERVER --> TOOLS["Tools"]
+    TOOLS --> SAPI["search_coveo"]
+    TOOLS --> PRAI["passage_retrieval"]
+    TOOLS --> AA["answer_question"]
+```
+
 ### search_coveo
-Queries the Coveo API and retrieves search results.
+Queries the Coveo Search API and retrieves search results.
 ```
 Input: query (string) - The search query text
 Input: numberOfResults (int, optional) - The number of documents to retrieve from the index. Default: 5.
@@ -21,14 +30,14 @@ Output: Formatted search results or error message
 ```
 
 ### passage_retrieval
-Retrieves specific passages from documents that are relevant to a query.
+Queries the Coveo Passage Retrieval API and retrieves specific passages from documents that are relevant to a query.
 ```
 Input: query (string) - The search query text
 Output: Formatted passages or error message
 ```
 
 ### answer_question
-Answer questions using Coveo Relevance Generative Answering.
+Queries the Coveo Answer API (Relevance Generative Answering) and retrieves an answer to a question.
 ```
 Input: query (string) - The question to answer
 Output: Generated answer from Coveo sources with citations
