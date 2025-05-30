@@ -29,7 +29,28 @@ class SearchContext:
     additionalFields: Optional[List[str]] = None
 
 
-async def make_coveo_request(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def format_search_response(response: Dict[str, Any], fields_to_include: List[str]) -> Dict[str, Any]:
+    """
+    Format the Coveo search response to include only specified fields.
+    
+    Args:
+        response (Dict[str, Any]): The raw response from Coveo API.
+        fields_to_include (List[str]): List of fields to include in the formatted response.
+        
+    Returns:
+        Dict[str, Any]: Formatted response with only specified fields.
+    """
+    if not response or "results" not in response:
+        return {"results": []}
+    
+    formatted_results = []
+    for result in response["results"]:
+        formatted_result = {field: result.get(field) for field in fields_to_include if field in result}
+        formatted_results.append(formatted_result)
+    
+    return {"results": formatted_results}
+
+async def make_coveo_request(payload: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """Make a request to the Coveo API with proper error handling."""
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -37,6 +58,7 @@ async def make_coveo_request(params: Dict[str, Any]) -> Optional[Dict[str, Any]]
         "User-Agent": USER_AGENT
     }
 
+    params = {}
     params["organizationId"] = ORG_ID
 
     endpoint = COVEO_SEARCH_API_ENDPOINT.format(
@@ -45,9 +67,10 @@ async def make_coveo_request(params: Dict[str, Any]) -> Optional[Dict[str, Any]]
     
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.get(endpoint, headers=headers, params=params, timeout=30.0)
+            response = await client.post(endpoint, headers=headers, json=payload, params=params, timeout=30.0)
             response.raise_for_status()
-            return response.json()
+            formatted_response = format_search_response(response.json(), payload.get("fieldsToInclude", []))
+            return formatted_response
         except httpx.HTTPStatusError as e:
             return {"error": f"HTTP {e.response.status_code}: {e.response.text}"}
         except Exception as e:

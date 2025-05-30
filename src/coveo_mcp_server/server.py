@@ -24,12 +24,24 @@ async def search_coveo(query: str, numberOfResults: int = 5) -> str:
         str: JSON Formatted search results or an error message.
     """
 
-    params = {
+    payload = {
         "q": query,
         "numberOfResults": numberOfResults,
+        "fieldsToExclude": [
+            "rankingInfo"
+        ],
+        "fieldsToInclude": [
+            "title",
+            "uri",
+            "excerpt",
+            "printableUri",
+            "clickUri"
+        ],
+        "excerptLength": 500,
+        "debugRankingInformation": False
     }
 
-    data = await make_coveo_request(params)
+    data = await make_coveo_request(payload)
     
     if data and "error" not in data:
         if "results" in data and data["results"]:
