@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     if transport == "sse":
         print("🔗 Connect to the server using a web browser or SSE client.")
-        uvicorn.run(mcp.sse_app, host="0.0.0.0", port=8000)
+        uvicorn.run(mcp.sse_app, host="127.0.0.1", port=8000)
     else:
         print("🔗 Connect to the server using a standard input/output client.")
         mcp.run(transport="stdio")
