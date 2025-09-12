@@ -7,8 +7,7 @@ import pytest
 from coveo_mcp_server.server import (
     search_coveo,
     passage_retrieval,
-    answer_question,
-    customer_service_agent
+    answer_question
 )
 
 
@@ -85,19 +84,31 @@ async def test_search_coveo_error():
 @pytest.mark.asyncio
 async def test_passage_retrieval_success():
     """Test successful passage retrieval."""
-    # Create mock passages
-    mock_passage = MagicMock()
-    mock_passage.format.return_value = "Formatted passage text"
+    # Create mock passages as dictionaries (not MagicMock objects)
+    mock_passages = [
+        {
+            "text": "This is a test passage",
+            "document": {
+                "title": "Test Document",
+                "permanentid": "test-id",
+                "clickableuri": "https://example.com/doc"
+            }
+        }
+    ]
     mock_retrieve_passages = AsyncMock()
-    mock_retrieve_passages.return_value = [mock_passage]
+    mock_retrieve_passages.return_value = mock_passages
     
     with patch('coveo_mcp_server.server.retrieve_passages', mock_retrieve_passages):
         # Call function
         result = await passage_retrieval("test query")
 
-        # Verify result
-        assert result == "Formatted passage text"
-        mock_retrieve_passages.assert_called_once_with("test query")
+        # Verify result - should be JSON string
+        import json
+        parsed_result = json.loads(result)
+        assert len(parsed_result) == 1
+        assert parsed_result[0]["text"] == "This is a test passage"
+        assert parsed_result[0]["document"]["title"] == "Test Document"
+        mock_retrieve_passages.assert_called_once_with(query="test query", number_of_passages=5)
 
 
 @pytest.mark.asyncio

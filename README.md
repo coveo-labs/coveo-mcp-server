@@ -118,6 +118,36 @@ Note: If Claude for Desktop cannot find the `uv` command, you may need to specif
 "command": "/opt/homebrew/bin/uv"
 ```
 
+## Development Setup
+If you want to edit the source code or contribute to this project, you'll need to set up a local development environment.
+
+1. **Create and Activate a Virtual Environment**
+
+   First, create a virtual environment in the project's root directory. This will keep all the necessary dependencies isolated.
+
+   ```bash
+   # Create the virtual environment
+   python -m venv .venv
+
+   # Activate it (macOS/Linux)
+   source .venv/bin/activate
+
+   # Or activate it (Windows)
+   # .\.venv\Scripts\activate
+   ```
+
+2. **Install Dependencies**
+
+   With the virtual environment active, install the project in "editable" mode. This allows you to make changes to the code and have them immediately reflected without reinstalling.
+
+   ```bash
+   # Install in editable mode with development dependencies
+   # Note the quotes around '.[dev]' to prevent shell errors
+   uv pip install -e '.[dev]'
+   ```
+
+   This command installs the package in editable mode (`-e`) and includes the extra development dependencies (`[dev]`), such as pytest, which are defined in the `pyproject.toml` file.
+
 ## Testing
 This project includes comprehensive unit tests for all API functions and MCP tools.
 
