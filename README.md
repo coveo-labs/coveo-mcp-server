@@ -70,6 +70,31 @@ Output: Generated answer from Coveo sources with citations
    COVEO_ANSWER_CONFIG_ID - Your Coveo Answer Config ID for the generative answering feature
    ```
 
+## Running the Server
+
+The server supports multiple transport methods:
+
+### Streamable HTTP (Default)
+The new standard transport for MCP servers:
+```bash
+python -m coveo_mcp_server
+# or explicitly:
+# python -m coveo_mcp_server
+```
+This will start the server on `http://127.0.0.1:8000` using the streamable-http transport.
+
+### SSE Transport (Legacy)
+For older clients that require SSE:
+```bash
+USE_SSE=true python -m coveo_mcp_server
+```
+
+### STDIO Transport
+For direct stdio communication:
+```bash
+USE_STDIO=true python -m coveo_mcp_server
+```
+
 ## Testing with MCP Inspector
 You can test the server with the MCP Inspector in two ways:
 
@@ -149,7 +174,7 @@ If you want to edit the source code or contribute to this project, you'll need t
    This command installs the package in editable mode (`-e`) and includes the extra development dependencies (`[dev]`), such as pytest, which are defined in the `pyproject.toml` file.
 
 ## Testing
-This project includes comprehensive unit tests for all API functions and MCP tools.
+This project includes comprehensive unit tests for all API functions and MCP tools, plus transport mode testing.
 
 ### Running Tests
 To run the tests and generate a coverage report:
@@ -161,6 +186,19 @@ To run the tests and generate a coverage report:
 # Or using pytest directly
 pytest tests/ -v --cov=src/coveo_mcp_server
 ```
+
+### Testing Transport Modes
+To verify all transport modes are working correctly:
+
+```bash
+# Test all transport modes (streamable-http, SSE, STDIO)
+python test_transports.py
+```
+
+This script will verify that:
+- **streamable-http** transport starts correctly (default)
+- **SSE** transport starts correctly (legacy)
+- **STDIO** transport can be imported and initialized
 
 ### Test Coverage
 The tests cover:
