@@ -76,12 +76,13 @@ The server supports multiple transport methods:
 
 ### Streamable HTTP (Default)
 The new standard transport for MCP servers:
+
+> **Note:** Run the following command from the project root directory.
+
 ```bash
 python -m coveo_mcp_server
-# or explicitly:
-# python -m coveo_mcp_server
 ```
-This will start the server on `http://127.0.0.1:8000` using the streamable-http transport.
+This will start the server on `http://127.0.0.1:8000` using the streamable-http transport (which streams responses to clients in real time over HTTP, allowing for faster and incremental delivery of results).
 
 ### SSE Transport (Legacy)
 For older clients that require SSE:
