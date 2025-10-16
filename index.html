@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coveo MCP Server | AI-Powered Search & Generative Answering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #141414; /* Dark 9 */
+            color: #CED4DA; /* Gray 4 */
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4263EB, #228BE6); /* Indigo 7 to Blue 6 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1F1F1F; /* Dark 8 */
+            border: 1px solid #3B3B3B; /* Dark 5 */
+        }
+        .code-block {
+            background-color: #141414; /* Dark 9 */
+            border: 1px solid #3B3B3B; /* Dark 5 */
+        }
+        .cta-button {
+            background-color: #37B24D; /* Green 7 */
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #40C057; /* Green 6 */
+        }
+        .secondary-button {
+            background-color: #2E2E2E; /* Dark 6 */
+            border: 1px solid #424242; /* Dark 4 */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .secondary-button:hover {
+            background-color: #3B3B3B; /* Dark 5 */
+            border-color: #696969; /* Dark 3 */
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, rgba(66, 99, 235, 0.1), rgba(34, 139, 230, 0.1)); /* Indigo 7 to Blue 6 with opacity */
+            border: 1px solid rgba(66, 99, 235, 0.3); /* Indigo 7 with opacity */
+        }
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-b-[#424242] bg-[#141414]/80 backdrop-blur-lg"> <!-- Dark 4 border, Dark 9 bg -->
+        <div class="container mx-auto flex items-center justify-between p-4">
+            <a href="#" class="flex items-center space-x-2">
+                <svg class="h-8 w-8 text-[#228BE6]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <!-- Blue 6 -->
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-1.008 1.11-1.212l.558-.207a2.25 2.25 0 012.387 1.13l.257.653c.125.317.43.538.777.538h.958a2.25 2.25 0 011.838 3.49l-.496.862c-.22.382-.22.852 0 1.234l.496.862a2.25 2.25 0 01-1.838 3.49h-.958a1.688 1.688 0 00-.777.538l-.257.653a2.25 2.25 0 01-2.387 1.13l-.558-.207a2.25 2.25 0 01-1.11-1.212c-.09-.542-.56-1.008-1.11-1.212l-.558-.207a2.25 2.25 0 01-2.387-1.13l-.257-.653a1.688 1.688 0 00-.777-.538h-.958a2.25 2.25 0 01-1.838-3.49l.496-.862c.22-.382.22-.852 0-1.234l-.496-.862a2.25 2.25 0 011.838-3.49h.958c.347 0 .652-.22.777-.538l.257-.653a2.25 2.25 0 012.387-1.13l.558.207c.55.204 1.02.67 1.11 1.212z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
+                </svg>
+                <span class="text-xl font-bold text-[#F1F3F5]">Coveo MCP Server</span> <!-- Gray 1 -->
+            </a>
+            <nav class="hidden items-center space-x-6 md:flex">
+                <a href="#overview" class="text-sm text-[#CED4DA] hover:text-[#F1F3F5]">Overview</a> <!-- Gray 4 hover to Gray 1 -->
+                <a href="#use-cases" class="text-sm text-[#CED4DA] hover:text-[#F1F3F5]">Use Cases</a>
+                <a href="#tools" class="text-sm text-[#CED4DA] hover:text-[#F1F3F5]">Tools</a>
+                <a href="#features" class="text-sm text-[#CED4DA] hover:text-[#F1F3F5]">Features</a>
+                <a href="#get-started" class="text-sm text-[#CED4DA] hover:text-[#F1F3F5]">Get Started</a>
+            </nav>
+            <a href="https://github.com/coveo-labs/coveo-mcp-server" target="_blank" rel="noopener noreferrer" class="secondary-button hidden rounded-md px-4 py-2 text-sm font-semibold text-[#F1F3F5] sm:block">View on GitHub</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-24 text-center sm:py-32">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl font-extrabold tracking-tight text-[#F1F3F5] sm:text-6xl"> <!-- Gray 1 -->
+                    The <span class="gradient-text">Coveo</span> MCP Server
+                </h1>
+                <p class="mx-auto mt-6 max-w-2xl text-lg text-[#ADB5BD]"> <!-- Gray 5 -->
+                    Harness the power of Coveo's AI-powered search and Relevance Generative Answering directly within your applications and intelligent agents.
+                </p>
+                <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <a href="#get-started" class="cta-button w-full rounded-md px-8 py-3 text-sm font-semibold text-white sm:w-auto">Get Started</a>
+                    <a href="https://github.com/coveo-labs/coveo-mcp-server" target="_blank" rel="noopener noreferrer" class="secondary-button w-full rounded-md px-8 py-3 text-sm font-semibold text-[#F1F3F5] sm:w-auto">
+                        <span class="sm:hidden">View on GitHub</span>
+                        <span class="hidden sm:inline">Star on GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="py-20 sm:py-24">
+            <div class="container mx-auto px-4">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-[#F1F3F5] sm:text-4xl">How It Works</h2> <!-- Gray 1 -->
+                    <p class="mt-4 text-lg text-[#ADB5BD]"> <!-- Gray 5 -->
+                        The Coveo MCP Server acts as a bridge, exposing powerful Coveo APIs as simple, consumable tools for any MCP-compatible client, like Claude.
+                    </p>
+                </div>
+                <div class="mx-auto mt-16 max-w-4xl">
+                    <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
+                        <!-- Client -->
+                        <div class="flex flex-col items-center text-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-[#4263EB]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Indigo 7 -->
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                           </svg>
+                            <h3 class="mt-4 text-lg font-semibold text-[#F1F3F5]">MCP Client</h3> <!-- Gray 1 -->
+                            <p class="text-sm text-[#ADB5BD]">e.g., Claude for Desktop</p> <!-- Gray 5 -->
+                        </div>
+                        <!-- Arrow -->
+                        <div class="text-[#868E96] md:rotate-0 rotate-90"> <!-- Gray 6 -->
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </div>
+                        <!-- Server -->
+                        <div class="flex flex-col items-center text-center">
+                             <svg class="h-16 w-16 text-[#228BE6]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <!-- Blue 6 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008z" />
+                             </svg>
+                             <h3 class="mt-4 text-lg font-semibold text-[#F1F3F5]">Coveo MCP Server</h3> <!-- Gray 1 -->
+                            <p class="text-sm text-[#ADB5BD]">This project</p> <!-- Gray 5 -->
+                        </div>
+                        <!-- Arrow -->
+                        <div class="text-[#868E96] md:rotate-0 rotate-90"> <!-- Gray 6 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </div>
+                        <!-- Coveo Platform -->
+                        <div class="flex flex-col items-center text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-[#20C997]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Teal 5 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                            </svg>
+                            <h3 class="mt-4 text-lg font-semibold text-[#F1F3F5]">Coveo Platform</h3> <!-- Gray 1 -->
+                            <p class="text-sm text-[#ADB5BD]">Search & Generative APIs</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What you can build -->
+        <section id="use-cases" class="py-20 sm:py-24 bg-[#1F1F1F] border-y border-y-[#424242]"> <!-- Dark 8 bg, Dark 4 border -->
+             <div class="container mx-auto px-4">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-[#F1F3F5] sm:text-4xl">What You Can Build</h2> <!-- Gray 1 -->
+                    <p class="mt-4 text-lg text-[#ADB5BD]"> <!-- Gray 5 -->
+                        Connect your AI agents to Coveo's unified index to build powerful, secure, and accurate applications.
+                    </p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
+                    <!-- Use Case 1 -->
+                    <div class="card flex items-start space-x-4 rounded-lg p-6">
+                        <div class="feature-icon mt-1 flex-shrink-0 rounded-lg p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#4263EB]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Indigo 7 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Customer Support Agent</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">An automated agent that answers customer questions using your official knowledge base, complete with citations.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                    <!-- Use Case 2 -->
+                    <div class="card flex items-start space-x-4 rounded-lg p-6">
+                        <div class="feature-icon mt-1 flex-shrink-0 rounded-lg p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7950F2]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Violet 6 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Internal Knowledge Chatbot</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">A secure chatbot for employees to query internal resources like HR policies or technical docs, respecting all user permissions.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                     <!-- Use Case 3 -->
+                    <div class="card flex items-start space-x-4 rounded-lg p-6">
+                        <div class="feature-icon mt-1 flex-shrink-0 rounded-lg p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#20C997]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Teal 5 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Commerce Copilot</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">An assistant that helps shoppers find the best product by understanding natural language and retrieving precise info from product catalogs.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                     <!-- Use Case 4 -->
+                    <div class="card flex items-start space-x-4 rounded-lg p-6">
+                        <div class="feature-icon mt-1 flex-shrink-0 rounded-lg p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#FD7E14]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Orange 6 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Research Assistant</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">An agent that can quickly summarize and synthesize information from a vast repository of documents before generating a report.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Available Tools Section -->
+        <section id="tools" class="py-20 sm:py-24">
+            <div class="container mx-auto px-4">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-[#F1F3F5] sm:text-4xl">Available Tools</h2> <!-- Gray 1 -->
+                    <p class="mt-4 text-lg text-[#ADB5BD]"> <!-- Gray 5 -->
+                        Expose Coveo's powerful APIs as simple, easy-to-use tools.
+                    </p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Tool 1: search_coveo -->
+                    <div class="card rounded-lg p-6">
+                        <div class="flex items-center gap-4">
+                            <h3 class="text-xl font-semibold text-[#F1F3F5]">🛠️ search_coveo</h3> <!-- Gray 1 -->
+                        </div>
+                        <p class="mt-4 text-sm text-[#ADB5BD]"> <!-- Gray 5 -->
+                            Use `search_coveo` to retrieve metadata, titles, or URLs. Ideal for broadly exploring information, navigating sources, or presenting lists of content.
+                        </p>
+                         <div class="mt-4 space-y-2 text-xs">
+                            <p class="font-mono text-[#868E96] uppercase">Input</p> <!-- Gray 6 -->
+                            <p class="font-mono text-[#E9ECEF]"><span class="font-bold">query</span>: string</p> <!-- Gray 2 -->
+                             <p class="font-mono text-[#E9ECEF]"><span class="font-bold">numberOfResults</span>: int (optional, default: 5)</p> <!-- Gray 2 -->
+                             <p class="mt-2 font-mono text-[#868E96] uppercase">Output</p> <!-- Gray 6 -->
+                             <p class="font-mono text-[#E9ECEF]">JSON formatted search results</p> <!-- Gray 2 -->
+                        </div>
+                    </div>
+
+                    <!-- Tool 2: passage_retrieval -->
+                    <div class="card rounded-lg p-6">
+                         <div class="flex items-center gap-4">
+                             <h3 class="text-xl font-semibold text-[#F1F3F5]">🛠️ passage_retrieval</h3> <!-- Gray 1 -->
+                        </div>
+                        <p class="mt-4 text-sm text-[#ADB5BD]"> <!-- Gray 5 -->
+                           Use `passage_retrieval` to extract highly relevant text snippets. Useful for building answers, summaries, or new documents from source material.
+                        </p>
+                         <div class="mt-4 space-y-2 text-xs">
+                            <p class="font-mono text-[#868E96] uppercase">Input</p> <!-- Gray 6 -->
+                            <p class="font-mono text-[#E9ECEF]"><span class="font-bold">query</span>: string</p> <!-- Gray 2 -->
+                             <p class="font-mono text-[#E9ECEF]"><span class="font-bold">numberOfPassages</span>: int (optional, default: 5)</p> <!-- Gray 2 -->
+                             <p class="mt-2 font-mono text-[#868E96] uppercase">Output</p> <!-- Gray 6 -->
+                             <p class="font-mono text-[#E9ECEF]">JSON formatted passages</p> <!-- Gray 2 -->
+                        </div>
+                    </div>
+
+                    <!-- Tool 3: answer_question -->
+                    <div class="card rounded-lg p-6">
+                        <div class="flex items-center gap-4">
+                             <h3 class="text-xl font-semibold text-[#F1F3F5]">🛠️ answer_question</h3> <!-- Gray 1 -->
+                        </div>
+                        <p class="mt-4 text-sm text-[#ADB5BD]"> <!-- Gray 5 -->
+                           Use `answer_question` when you need a complete, consistent, and well-structured answer, powered by Coveo's Relevance Generative Answering engine.
+                        </p>
+                         <div class="mt-4 space-y-2 text-xs">
+                            <p class="font-mono text-[#868E96] uppercase">Input</p> <!-- Gray 6 -->
+                            <p class="font-mono text-[#E9ECEF]"><span class="font-bold">query</span>: string</p> <!-- Gray 2 -->
+                            <p class="mt-2 font-mono text-[#868E96] uppercase">Output</p> <!-- Gray 6 -->
+                            <p class="font-mono text-[#E9ECEF]">A generated answer with citations</p> <!-- Gray 2 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 sm:py-24 bg-[#1F1F1F] border-y border-y-[#424242]"> <!-- Dark 8 bg, Dark 4 border -->
+            <div class="container mx-auto px-4">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-[#F1F3F5] sm:text-4xl">Core Features</h2> <!-- Gray 1 -->
+                    <p class="mt-4 text-lg text-[#ADB5BD]">Built with performance and developer experience in mind.</p> <!-- Gray 5 -->
+                </div>
+                <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="flex items-start space-x-4">
+                        <div class="feature-icon flex-shrink-0 rounded-lg p-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#4263EB]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Indigo 7 -->
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                             </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Asynchronous by Design</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">Leverages `httpx` and `asyncio` for non-blocking API requests, ensuring a responsive server.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4">
+                        <div class="feature-icon flex-shrink-0 rounded-lg p-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7950F2]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Violet 6 -->
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                             </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Grounded Generative Answering</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">Go beyond search results with AI-generated answers complete with citations from your indexed content.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="feature-icon flex-shrink-0 rounded-lg p-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#20C997]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Teal 5 -->
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                           </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Semantic Retrieval</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">The `passage_retrieval` tool intelligently extracts the most relevant text snippets, not just whole documents.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4">
+                        <div class="feature-icon flex-shrink-0 rounded-lg p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#FD7E14]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Orange 6 -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Easy Configuration</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">Simple setup using a `.env` file for your Coveo credentials. Get up and running in minutes.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="feature-icon flex-shrink-0 rounded-lg p-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#339AF0]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Blue 5 -->
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                             </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Multiple Transports</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">Supports modern `streamable-http`, legacy `SSE`, and direct `STDIO` for maximum client compatibility.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="feature-icon flex-shrink-0 rounded-lg p-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#BE4BDB]" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Grape 6 -->
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                           </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[#F1F3F5]">Fully Tested</h3> <!-- Gray 1 -->
+                            <p class="mt-1 text-sm text-[#ADB5BD]">Includes a comprehensive test suite with `pytest` to ensure reliability and correctness.</p> <!-- Gray 5 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Get Started Section -->
+        <section id="get-started" class="py-20 sm:py-24">
+            <div class="container mx-auto px-4">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-[#F1F3F5] sm:text-4xl">Get Started in 4 Steps</h2> <!-- Gray 1 -->
+                    <p class="mt-4 text-lg text-[#ADB5BD]">Go from zero to a running Coveo MCP server in minutes.</p> <!-- Gray 5 -->
+                </div>
+                <div class="mx-auto mt-16 max-w-3xl space-y-12">
+                    <!-- Step 1 -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#F1F3F5]"><span class="gradient-text mr-2">Step 1:</span> Clone the Repository</h3> <!-- Gray 1 -->
+                        <p class="mt-2 text-sm text-[#ADB5BD]">Get the source code on your local machine.</p> <!-- Gray 5 -->
+                        <div class="code-block group relative mt-4 overflow-hidden rounded-lg">
+                            <pre class="p-4 text-sm text-[#DEE2E6]"><code class="language-bash">git clone https://github.com/coveo-labs/coveo-mcp-server.git
+cd coveo-mcp-server</code></pre> <!-- Gray 3 -->
+                            <button class="copy-btn absolute right-2 top-2 rounded-md bg-[#2E2E2E] p-1.5 text-[#868E96] opacity-0 transition hover:bg-[#3B3B3B] group-hover:opacity-100"> <!-- Dark 6 bg, Gray 6 text, Dark 5 hover -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#F1F3F5]"><span class="gradient-text mr-2">Step 2:</span> Configure Your Environment</h3> <!-- Gray 1 -->
+                        <p class="mt-2 text-sm text-[#ADB5BD]">Copy the example environment file and add your Coveo API credentials.</p> <!-- Gray 5 -->
+                        <div class="code-block group relative mt-4 overflow-hidden rounded-lg">
+                            <pre class="p-4 text-sm text-[#DEE2E6]"><code class="language-bash">cp .env.example .env</code></pre> <!-- Gray 3 -->
+                            <button class="copy-btn absolute right-2 top-2 rounded-md bg-[#2E2E2E] p-1.5 text-[#868E96] opacity-0 transition hover:bg-[#3B3B3B] group-hover:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                        </div>
+                        <p class="mt-2 text-sm text-[#ADB5BD]">Then, edit `.env`:</p> <!-- Gray 5 -->
+                        <div class="code-block group relative mt-4 overflow-hidden rounded-lg">
+                            <pre class="p-4 text-sm text-[#DEE2E6]"><code class="language-bash">COVEO_API_KEY="&lt;your-api-key&gt;"
+COVEO_ORGANIZATION_ID="&lt;your-organization-id&gt;"
+COVEO_ANSWER_CONFIG_ID="&lt;your-answer-config-id&gt;"</code></pre> <!-- Gray 3 -->
+                            <button class="copy-btn absolute right-2 top-2 rounded-md bg-[#2E2E2E] p-1.5 text-[#868E96] opacity-0 transition hover:bg-[#3B3B3B] group-hover:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#F1F3F5]"><span class="gradient-text mr-2">Step 3:</span> Install Dependencies</h3> <!-- Gray 1 -->
+                        <p class="mt-2 text-sm text-[#ADB5BD]">We recommend using `uv` for fast dependency management.</p> <!-- Gray 5 -->
+                        <div class="code-block group relative mt-4 overflow-hidden rounded-lg">
+                            <pre class="p-4 text-sm text-[#DEE2E6]"><code class="language-bash">uv pip install -e '.[dev]'</code></pre> <!-- Gray 3 -->
+                             <button class="copy-btn absolute right-2 top-2 rounded-md bg-[#2E2E2E] p-1.5 text-[#868E96] opacity-0 transition hover:bg-[#3B3B3B] group-hover:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#F1F3F5]"><span class="gradient-text mr-2">Step 4:</span> Run the Server</h3> <!-- Gray 1 -->
+                        <p class="mt-2 text-sm text-[#ADB5BD]">Start the server. By default, it uses the modern `streamable-http` transport.</p> <!-- Gray 5 -->
+                        <div class="code-block group relative mt-4 overflow-hidden rounded-lg">
+                            <pre class="p-4 text-sm text-[#DEE2E6]"><code class="language-bash">python -m coveo_mcp_server</code></pre> <!-- Gray 3 -->
+                             <button class="copy-btn absolute right-2 top-2 rounded-md bg-[#2E2E2E] p-1.5 text-[#868E96] opacity-0 transition hover:bg-[#3B3B3B] group-hover:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                        </div>
+                        <p class="mt-4 text-sm text-[#ADB5BD]">You can test it immediately with the MCP Inspector:</p> <!-- Gray 5 -->
+                        <div class="code-block group relative mt-4 overflow-hidden rounded-lg">
+                            <pre class="p-4 text-sm text-[#DEE2E6]"><code class="language-bash">mcp dev src/coveo_mcp_server/__main__.py</code></pre> <!-- Gray 3 -->
+                             <button class="copy-btn absolute right-2 top-2 rounded-md bg-[#2E2E2E] p-1.5 text-[#868E96] opacity-0 transition hover:bg-[#3B3B3B] group-hover:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-t-[#424242] bg-[#1F1F1F]"> <!-- Dark 4 border, Dark 8 bg -->
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0">
+                <p class="text-sm text-[#ADB5BD]">&copy; 2025 Coveo Solutions Inc. | All Rights Reserved.</p> <!-- Gray 5 -->
+                <a href="https://github.com/coveo-labs/coveo-mcp-server" target="_blank" rel="noopener noreferrer" class="text-sm text-[#ADB5BD] hover:text-[#F1F3F5]"> <!-- Gray 5 hover to Gray 1 -->
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+             <p class="mt-4 text-center text-xs text-[#868E96]"> <!-- Gray 6 -->
+                Disclaimer: The Coveo MCP Server is provided as-is, intended purely for educational and exploratory purposes. It's not a production-ready product.
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Copy to clipboard functionality
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const codeBlock = button.previousElementSibling;
+                    const code = codeBlock.querySelector('code').innerText;
+                    
+                    // Using document.execCommand for broader compatibility within iframes
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        const originalIcon = button.innerHTML;
+                        button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#40C057]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>'; // Green 6
+                        setTimeout(() => {
+                            button.innerHTML = originalIcon;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
