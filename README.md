@@ -4,7 +4,7 @@
 The Coveo MCP Server is provided as-is, intended purely for educational and exploratory purposes. It’s not a production-ready product.
 
 ## Overview
-This is a simple MCP server that connects to **Coveo** and executes search queries. It provides tools for:
+This is a simple MCP server that connects to **Coveo** and executes queries. It provides tools for:
 
 - Search functionality
 - Passage retrieval
