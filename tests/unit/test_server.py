@@ -41,9 +41,12 @@ async def test_search_coveo_success():
         # Call function
         result = await search_coveo("test query", numberOfResults=5)
 
-        # Verify result
-        assert "Test Document" in result
-        assert "This is a test excerpt" in result
+        # Verify result - should be dictionary
+        assert isinstance(result, dict)
+        assert "results" in result
+        assert len(result["results"]) == 1
+        assert result["results"][0]["title"] == "Test Document"
+        assert result["results"][0]["excerpt"] == "This is a test excerpt"
         mock_make_request.assert_called_once()
         call_args = mock_make_request.call_args.args[0]
         assert call_args["q"] == "test query"
@@ -62,7 +65,8 @@ async def test_search_coveo_empty_results():
         result = await search_coveo("test query")
 
         # Verify result
-        assert result == "No results found for this query."
+        assert isinstance(result, dict)
+        assert result == {"message": "No results found for this query."}
 
 
 @pytest.mark.asyncio
@@ -77,8 +81,8 @@ async def test_search_coveo_error():
         result = await search_coveo("test query")
 
         # Verify result
-        assert "Error:" in result
-        assert "API error" in result
+        assert isinstance(result, dict)
+        assert result == {"error": "API error"}
 
 
 @pytest.mark.asyncio
@@ -102,12 +106,12 @@ async def test_passage_retrieval_success():
         # Call function
         result = await passage_retrieval("test query")
 
-        # Verify result - should be JSON string
-        import json
-        parsed_result = json.loads(result)
-        assert len(parsed_result) == 1
-        assert parsed_result[0]["text"] == "This is a test passage"
-        assert parsed_result[0]["document"]["title"] == "Test Document"
+        # Verify result - should be dictionary
+        assert isinstance(result, dict)
+        assert "passages" in result
+        assert len(result["passages"]) == 1
+        assert result["passages"][0]["text"] == "This is a test passage"
+        assert result["passages"][0]["document"]["title"] == "Test Document"
         mock_retrieve_passages.assert_called_once_with(query="test query", number_of_passages=5)
 
 
@@ -123,7 +127,8 @@ async def test_passage_retrieval_empty():
         result = await passage_retrieval("test query")
 
         # Verify result
-        assert result == "No passages found for this query."
+        assert isinstance(result, dict)
+        assert result == {"message": "No passages found for this query."}
 
 
 @pytest.mark.asyncio
@@ -138,8 +143,8 @@ async def test_passage_retrieval_exception():
         result = await passage_retrieval("test query")
 
         # Verify result
-        assert "Error retrieving passages:" in result
-        assert "Test exception" in result
+        assert isinstance(result, dict)
+        assert result == {"error": "Error retrieving passages: Test exception"}
 
 
 @pytest.mark.asyncio
@@ -178,7 +183,8 @@ async def test_empty_queries():
     """Test all tools with empty queries."""
     # Test passage_retrieval with empty query
     result = await passage_retrieval("")
-    assert result == "Error: Query cannot be empty"
+    assert isinstance(result, dict)
+    assert result == {"error": "Query cannot be empty"}
 
     # Test answer_question with empty query
     result = await answer_question("")
