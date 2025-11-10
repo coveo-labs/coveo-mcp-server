@@ -22,7 +22,7 @@ async def search_coveo(query: str, numberOfResults: int = 5) -> Dict[str, Any]:
 
     Returns:
 
-        str: JSON Formatted search results or an error message.
+        Dict[str, Any]: Search results or an error message.
     """
 
     payload = {
@@ -46,9 +46,9 @@ async def search_coveo(query: str, numberOfResults: int = 5) -> Dict[str, Any]:
     
     if data and "error" not in data:
         if "results" in data and data["results"]:
-            return  json.dumps(data["results"])
-        return "No results found for this query."
-    return f"Error: {data.get('error', 'Unknown error occurred')}"
+            return data
+        return {"message": "No results found for this query."}
+    return {"error": data.get('error', 'Unknown error occurred')}
 
 
 @mcp.tool()
@@ -64,20 +64,20 @@ async def passage_retrieval(query: str, numberOfPassages: int = 5) -> Dict[str, 
         numberOfPassages (int, optional): How many passages to retrieve. Default: 5. Maximum: 20.
         
     Returns:
-        str: JSON Formatted passages or error message.
+        Dict[str, Any]: Passages or error message.
     """
     if not query:
-        return "Error: Query cannot be empty"
+        return {"error": "Query cannot be empty"}
     
     try:
         passages = await retrieve_passages(query=query, number_of_passages=numberOfPassages)
         
         if not passages:
-            return "No passages found for this query."
+            return {"message": "No passages found for this query."}
         
-        return json.dumps(passages)
+        return {"passages": passages}
     except Exception as e:
-        return f"Error retrieving passages: {str(e)}"
+        return {"error": f"Error retrieving passages: {str(e)}"}
 
 
 @mcp.tool()
